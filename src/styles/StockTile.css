@@ -1,0 +1,56 @@
+.tile {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    font-family: Arial, sans-serif;
+}
+
+.tile h2 {
+    font-size: 24px;
+    margin-bottom: 12px;
+    text-align: center;
+    color: #333333;
+}
+
+.tile p {
+    margin: 8px 0;
+    font-size: 14px;
+    color: #555555;
+}
+
+.price-change {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+.price-change.negative {
+    color: #d9534f;
+}
+
+.price-change.positive {
+    color: #5cb85c;
+}
+
+.tile .stock-summary {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+}
+
+.tile .stock-summary div {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.tile .stock-summary div:last-child {
+    margin-right: 0;
+}
+
+.tile .stock-summary p {
+    margin: 4px 0;
+}
