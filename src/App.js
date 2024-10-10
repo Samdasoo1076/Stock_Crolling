@@ -8,12 +8,12 @@ function App() {
   return (
 
       <div className="dashboard">
-      <StockTile symbol="NVDA" />  {/* 엔비디아 주식 */}
-      <StockTile symbol="AAPL" />  {/* 애플 주식 */}
-      <StockTile symbol="TSLA" />  {/* 애플 주식 */}
+      <StockTile symbol="NVDA" />
+      <StockTile symbol="AAPL" />
+      <StockTile symbol="TSLA" />
       <ScheduleTile />
       <ToDoListTile />
-      <StockNewsTile symbol="NVDA" /> 
+      <StockNewsTile symbol="NVDA" />
     </div>
   );
 }

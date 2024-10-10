@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../styles/StockTile.css';  // 스타일링 파일 경로
+import '../styles/StockTile.css'; 
 
-function StockTile({ symbol }) {  // 'symbol'을 props로 받습니다.
+function StockTile({ symbol }) {   
     const [stockData, setStockData] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -26,7 +26,7 @@ function StockTile({ symbol }) {  // 'symbol'을 props로 받습니다.
         };
 
         fetchData();
-    }, [symbol]);  // 'symbol'이 변경될 때마다 데이터를 다시 가져옵니다.
+    }, [symbol]);  
 
     return (
         <div className="tile">

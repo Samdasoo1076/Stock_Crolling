@@ -13,13 +13,14 @@
     font-size: 24px;
     margin-bottom: 12px;
     text-align: center;
-    color: #333333;
+    color: #333d4b
+    
 }
 
 .tile p {
     margin: 8px 0;
     font-size: 14px;
-    color: #555555;
+    color: #333d4b
 }
 
 .price-change {
@@ -29,11 +30,11 @@
 }
 
 .price-change.negative {
-    color: #d9534f;
+    color: #3182f6;
 }
 
 .price-change.positive {
-    color: #5cb85c;
+    color: #f04452;
 }
 
 .tile .stock-summary {

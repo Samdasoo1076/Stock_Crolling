@@ -17,7 +17,7 @@ function ScheduleTile() {
     });
 
     const fetchSchedules = async (date) => {
-        const formattedDate = date.toISOString().split('T')[0]; // YYYY-MM-DD 형식으로 변환
+        const formattedDate = date.toISOString().split('T')[0]; 
         try {
             const response = await axios.get('http://localhost:5000/api/schedules');
             const filteredSchedules = response.data.filter(schedule =>
@@ -40,28 +40,23 @@ function ScheduleTile() {
         }
     
         try {
-            // 선택된 날짜의 년, 월, 일 가져오기
             const year = selectedDate.getFullYear();
             const month = String(selectedDate.getMonth() + 1).padStart(2, '0');
             const day = String(selectedDate.getDate()).padStart(2, '0');
     
-            // 추가할 시간과 분 가져오기, 없는 경우 기본값으로 설정
             const hour = newSchedule.hour || '00';
             const minute = newSchedule.minute || '00';
     
-            // 날짜와 시간을 조합하여 'YYYY-MM-DD HH:MM:SS' 형식으로 만들기
             const fullDate = `${year}-${month}-${day} ${hour}:${minute}:00`;
     
-            // 서버에 전달
             await axios.post('http://localhost:5000/api/schedules', {
                 date: fullDate,
                 title: newSchedule.title,
                 description: newSchedule.description
             });
             
-            // 초기화
             setNewSchedule({ title: '', description: '', hour: '00', minute: '00' });
-            fetchSchedules(selectedDate); // 새로 추가된 스케줄을 가져옵니다.
+            fetchSchedules(selectedDate); 
             toast.success("일정이 성공적으로 추가되었습니다.");
         } catch (error) {
             console.error('일정 추가 중 오류 발생:', error);

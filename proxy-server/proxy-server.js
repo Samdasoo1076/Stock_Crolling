@@ -68,11 +68,11 @@ app.get('/api/schedules', async (req, res) => {
     }
 });
 
-// 일정 추가 엔드포인트
+// 일정 추가
 app.post('/api/schedules', async (req, res) => {
     const { date, title, description } = req.body;
 
-    console.log('Received date:', date); // 이 줄을 추가하여 fullDate가 제대로 전달되는지 확인
+    console.log('받은 데이터 :', date); 
 
     if (!date || !title) {
         return res.status(400).send('날짜와 제목은 필수입니다.');
@@ -89,14 +89,13 @@ app.post('/api/schedules', async (req, res) => {
     }
 });
 
-
-// 스케줄 업데이트하기 (완료 여부와 완료 날짜 포함)
+//스케줄 업데이트
 app.put('/api/schedules/:id', async (req, res) => {
     const { id } = req.params;
     const { completed } = req.body;
 
     try {
-        // 먼저 기존 스케줄 데이터를 가져옵니다.
+    
         const [rows] = await pool.query('SELECT * FROM schedules WHERE id = ?', [id]);
         const existingSchedule = rows[0];
 
@@ -104,7 +103,7 @@ app.put('/api/schedules/:id', async (req, res) => {
             return res.status(404).json({ error: '스케줄을 찾을 수 없습니다.' });
         }
 
-        // 업데이트 시 필드를 변경하지 않는다면 기존 값을 사용합니다.
+    
         const date = existingSchedule.date;
         const title = existingSchedule.title;
         const description = existingSchedule.description;
@@ -118,21 +117,21 @@ app.put('/api/schedules/:id', async (req, res) => {
 
         res.json(result);
     } catch (error) {
-        console.error('Error updating schedule:', error);
-        res.status(500).json({ error: 'Failed to update schedule' });
+        console.error('업데이트 에러:', error);
+        res.status(500).json({ error: '업데이트 실패' });
     }
 });
 
 
-// 스케줄 삭제하기
+// 스케줄 삭제
 app.delete('/api/schedules/:id', async (req, res) => {
     const { id } = req.params;
     try {
         const [result] = await pool.query('DELETE FROM schedules WHERE id = ?', [id]);
         res.json(result);
     } catch (error) {
-        console.error('Error deleting schedule:', error);
-        res.status(500).json({ error: 'Failed to delete schedule' });
+        console.error('삭제 에러:', error);
+        res.status(500).json({ error: '삭제 실패' });
     }
 });
 
@@ -142,8 +141,8 @@ app.get('/api/todo', async (req, res) => {
         const [rows] = await pool.query('SELECT * FROM todo_list ORDER BY created_at');
         res.json(rows);
     } catch (error) {
-        console.error('Error fetching todo list:', error);
-        res.status(500).json({ error: 'Failed to fetch todo list' });
+        console.error('조회 실패:', error);
+        res.status(500).json({ error: '조회 실패' });
     }
 });
 
@@ -154,8 +153,8 @@ app.post('/api/todo', async (req, res) => {
         const [result] = await pool.query('INSERT INTO todo_list (task) VALUES (?)', [task]);
         res.json({ id: result.insertId, task, completed: false });
     } catch (error) {
-        console.error('Error adding task:', error);
-        res.status(500).json({ error: 'Failed to add task' });
+        console.error('추가 에러:', error);
+        res.status(500).json({ error: '추가 실패' });
     }
 });
 
@@ -172,8 +171,8 @@ app.put('/api/todo/:id', async (req, res) => {
         );
         res.json(result);
     } catch (error) {
-        console.error('Error updating task:', error);
-        res.status(500).json({ error: 'Failed to update task' });
+        console.error('에러명 :', error);
+        res.status(500).json({ error: '업데이트문 실패' });
     }
 });
 
@@ -184,8 +183,8 @@ app.delete('/api/todo/:id', async (req, res) => {
         const [result] = await pool.query('DELETE FROM todo_list WHERE id = ?', [id]);
         res.json(result);
     } catch (error) {
-        console.error('Error deleting task:', error);
-        res.status(500).json({ error: 'Failed to delete task' });
+        console.error('삭제 에러 :', error);
+        res.status(500).json({ error: '삭제 쿼리 실패' });
     }
 });
 
